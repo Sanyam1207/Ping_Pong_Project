@@ -1,0 +1,73 @@
+*, *::after, *::before{
+    box-sizing: border-box; /*this makes placing elements easier*/
+}
+
+:root{  /*So that the variables' scope is throughout the css file*/
+
+    --hue: 200;
+    --saturation: 50%;
+    --foreground-color: hsl(var(--hue), var(--saturation), 75%);
+    --background-color: hsl(var(--hue), var(--saturation), 20%);
+
+}
+
+body{
+    margin: 0px;
+    background-color: var(--background-color);
+    overflow: hidden;
+}
+
+.paddle{
+
+    --position: 50; /* making a CSS variable to make it accessible from javascript and change it*/
+    position: absolute;
+    height: 10vh;
+    background-color: var(--foreground-color);
+    width: 1vh;
+    top: calc(var(--position) * 1vh);   /* using the variable to modify the position of the paddle*/
+    transform: translateY(-50%);
+}
+
+.paddle.left{
+    left: 1vw;
+}
+
+.paddle.right{
+    right: 1vw;
+}
+
+.ball{
+
+    --x: 50; /* making a CSS variable to make it accessible from javascript and change it*/
+    --y: 50;
+    position: absolute;
+    height: 2.5vh;
+    width: 2.5vh;
+    background-color: var(--foreground-color);
+    left: calc(var(--x) * 1vw);   /* using the variable to modify the position of the ball*/
+    top: calc(var(--y) * 1vh);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+.score{
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 6vh;
+    color: var(--foreground-color);
+}
+
+.score > *{
+    flex-grow: 1;   /*This will make sure that the display of player 1 and 2 will grow in equal proportions*/
+    flex-basis: 0;  /* 0 means that the initial size is zero so the element's size will depend on the flex-grow property*/
+    padding: 0 2vh;
+    margin: 1vh 0;
+    opacity: 0.4;
+
+}
+
+.score > :first-child{
+    text-align: right;
+    border-right: 0.5vh solid var(--foreground-color);
+}
